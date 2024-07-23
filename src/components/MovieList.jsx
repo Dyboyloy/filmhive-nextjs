@@ -59,17 +59,10 @@ export default function MovieList({ movies }) {
                     />
                     <p>{movie.title}</p>
                   </button>
-<<<<<<< HEAD
                 </div>
               </Link>
             ))}
           </Slider>
-=======
-                </Link>
-              ))}
-            </div>
-          </div>
->>>>>>> 72147ec5e9f8c9edcca5da6c86b4d353d7f6045d
         </div>
       </div>
     </div>
