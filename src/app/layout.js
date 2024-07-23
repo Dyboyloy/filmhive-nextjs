@@ -1,8 +1,8 @@
-import { Inter } from "next/font/google";
+import { Azeret_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Provider from "./Provider";
-import Analytics from "@/components/Analytics";
+import { Analytics } from "@vercel/analytics/react"
 
 const inter = Inter({ subsets: ["latin"] });
 
