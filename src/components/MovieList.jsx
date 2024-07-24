@@ -40,7 +40,7 @@ export default function MovieList({ movies }) {
   return (
     <div className="mx-2 my-5">
       <div>
-        <h1 className="text-2xl font-bold">Trading Movie</h1>
+        <h1 className="text-2xl font-bold">Trending Movie</h1>
         <div className="w-[90vw] m-auto md:w-[95vw]">
           <Slider {...settings}>
             {movies.map((movie, index) => (
