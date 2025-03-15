@@ -4,7 +4,7 @@ import axios from "axios";
 
 export default function MoviePlayer({ params }) {
   const ID = params.id;
-  const moviePlayer = `https://vidsrc.xyz/embed/movie/${ID}`;
+  const moviePlayer = `https://embed.su/embed/movie/${ID}`;
   return (
     <div className="my-2">
       <iframe
