@@ -8,15 +8,11 @@ export default function HorrorMovieList() {
     const [movies, setMovie] = useState([]);
   const key = process.env.NEXT_PUBLIC_API_KEY;
   const animeMovie = async () => {
-    const moviesAPI = "https://api.themoviedb.org/3/discover/movie";
-    const res = await fetch(
-      `${moviesAPI}?api_key=${key}&with_genres=27`
-    );
+    const res = await fetch("/api/movies/horror");
     const movies = await res.json();
-    setMovie(movies.results)
-    console.log(movies);
+    setMovie(movies.results);
   };
-  useEffect(() => {animeMovie(), []});
+  useEffect(() => {animeMovie()}, []);
   const settings = {
     infinite: true,
     speed: 1000,

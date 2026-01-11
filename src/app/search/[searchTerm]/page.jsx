@@ -5,29 +5,15 @@ import React from "react";
 
 export default function SearchResults({ params }) {
   const searchKeyword = params.searchTerm;
-  const key = process.env.NEXT_PUBLIC_API_KEY;
-  const searchMovieAPI = 'https://api.themoviedb.org/3/search/movie';
-  const searchTvAPI = 'https://api.themoviedb.org/3/search/tv';
   const [result, setResult] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(false);
   const getSearchResult = async () => {
     try {
-      const [movieRes, tvRes] = await Promise.all([
-        fetch(`${searchMovieAPI}?api_key=${key}&query=${searchKeyword}`),
-        fetch(`${searchTvAPI}?api_key=${key}&query=${searchKeyword}`)
-      ])
-      const movieData = await movieRes.json();
-      const tvData = await tvRes.json();
-
-      // combine the results
-      const combinedResults = [
-        ...movieData.results.map(movie => ({ ...movie, type: 'movie' })),
-        ...tvData.results.map(tv => ({ ...tv, type: 'tv' }))
-      ]
-      const sortedResults = combinedResults.sort((a, b) => b.popularity - a.popularity);
-      setResult(sortedResults);
-      console.log(result);
+      const searchFilm = fetch("/api/search?query=" + searchKeyword);
+      const res = await searchFilm;
+      const data = await res.json();
+      setResult(data);
       setLoading(false);
     } catch (err) {
       console.log(err);

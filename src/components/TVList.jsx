@@ -10,7 +10,7 @@ export default function TVList() {
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
   const getTvShow = async () => {
-    const res = await fetch(`https://api.themoviedb.org/3/trending/tv/week?api_key=${apiKey}`);
+    const res = await fetch("/api/tv/trending");
     if (!res.ok) {
       setLoading(false);
       setError("Failed to fetch data");

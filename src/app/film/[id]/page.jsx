@@ -8,7 +8,6 @@ export default async function movieDetail({ params, searchParams }) {
   const key = process.env.NEXT_PUBLIC_API_KEY;
   const res = await fetch(`https://api.themoviedb.org/3/${contentType}/${ID}?api_key=${key}`);
   const result = await res.json();
-  console.log(result);
   return (
     <>
       {result.length === 0 ? (
