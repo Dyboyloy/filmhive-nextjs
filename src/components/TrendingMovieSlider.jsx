@@ -9,10 +9,9 @@ export default function TrendingMovieSlider() {
   const trendMoviesAPI = "https://api.themoviedb.org/3/trending/all/week";
   const key = process.env.NEXT_PUBLIC_API_KEY;
   const getAllTrendMovies = async () => {
-    const res = await fetch(`${trendMoviesAPI}?api_key=${key}`);
-    const trendMovies = await res.json();
-    setTrendMovies(trendMovies.results);
-    console.log(trendMovies);
+    const res = await fetch("/api/movies/trending");
+    const movies = await res.json();
+    setTrendMovies(movies.results);
   };
   useEffect(() => {
     getAllTrendMovies();

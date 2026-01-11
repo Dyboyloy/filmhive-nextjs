@@ -13,11 +13,9 @@ export default function Page() {
   const [movies, setMovie] = useState([]);
   const key = process.env.NEXT_PUBLIC_API_KEY;
   const getAllMovies = async () => {
-    const moviesAPI = 'https://api.themoviedb.org/3/discover/movie';
-    const res = await fetch(`${moviesAPI}?api_key=${key}`);
+    const res = await fetch("/api/movies/discover");
     const movies = await res.json();
     setMovie(movies.results);
-    console.log(movies)
   };
   useEffect(() => {getAllMovies();}, []);
   return (

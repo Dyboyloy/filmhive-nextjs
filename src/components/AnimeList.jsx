@@ -5,25 +5,11 @@
     import Slider from "react-slick";
 
     export default function AnimeList() {
-    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
     const [tvList, setTvList] = React.useState([]);
-    const getTvShow = async (totalPages = 5) => {
-        const fetches = [];
-        for (let page = 1; page <= totalPages; page++) {
-            fetches.push(
-                fetch(`https://api.themoviedb.org/3/trending/tv/week?api_key=${apiKey}&page=${page}`)
-                    .then(res => res.json())
-                    .then(data => data.results)
-            )
-        }
-        const pages = await Promise.all(fetches);
-        const results = pages.flat();
-        const animeFromJapan = results.filter(
-            (item) =>
-                item.origin_country.includes("JP") &&
-                item.genre_ids.includes(16) // genre 16 = Animation
-        );
-        setTvList(animeFromJapan); 
+    const getTvShow = async () => {
+        const anime = await fetch("/api/anime");
+        const data = await anime.json();
+        setTvList(data.results);
     };
     React.useEffect(() => {
         getTvShow();

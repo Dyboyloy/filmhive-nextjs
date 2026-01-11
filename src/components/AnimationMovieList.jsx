@@ -6,17 +6,13 @@ import Slider from "react-slick";
 
 export default function AnimationMovieList() {
     const [anime, setAnime] = useState([]);
-  const key = process.env.NEXT_PUBLIC_API_KEY;
-  const animeMovie = async () => {
-    const moviesAPI = "https://api.themoviedb.org/3/discover/movie";
-    const res = await fetch(
-      `${moviesAPI}?api_key=${key}&with_genres=16`
-    );
-    const movies = await res.json();
-    setAnime(movies.results)
-    console.log(movies);
+    const key = process.env.NEXT_PUBLIC_API_KEY;
+    const animeMovie = async () => {
+      const res = await fetch("/api/movies/animation");
+      const movies = await res.json();
+      setAnime(movies.results);
   };
-  useEffect(() => {animeMovie(), []});
+  useEffect(() => {animeMovie()}, []);
   const settings = {
     infinite: true,
     speed: 1000,
