@@ -7,13 +7,14 @@ import { Analytics } from "@vercel/analytics/react"
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
+  metadataBase: new URL('https://filmhive.vercel.app/'),
   title: "FilmHive — Stream Movies & TV Shows in One Place",
   description:
     "Watch trending movies, top-rated TV shows, and anime for free on FilmHive. Smooth streaming, smart search, and an easy-to-use interface all in one place.",
-  metadataBase: new URL("https://filmhive.vercel.app"),
   verification: {
     google: "UdyD7QUz2WfWvatSzMFrYDZBynL1P6cyBthRuOfCWlc"
   },
+  keywords: ['movies', 'film', 'streaming'],
   openGraph: {
     title: "FilmHive — Stream Movies & TV Shows in One Place",
     description:

@@ -8,9 +8,9 @@ export default function HorrorMovieList() {
     const [movies, setMovie] = useState([]);
   const key = process.env.NEXT_PUBLIC_API_KEY;
   const animeMovie = async () => {
-    const res = await fetch("/api/movies/horror");
+    const res = await fetch("/api/movie/horror");
     const movies = await res.json();
-    setMovie(movies.results);
+    setMovie(movies);
   };
   useEffect(() => {animeMovie()}, []);
   const settings = {
@@ -58,21 +58,20 @@ export default function HorrorMovieList() {
       <h1 className="text-2xl font-bold">Horror</h1>
       <div className="w-[90vw] m-auto md:w-[95vw]">
         <Slider {...settings}>
-          {movies.map((movie, index) => (
-            <Link href={`/film/${movie.id}?contentType=movie`} key={index}>
+          {movies.map((m, index) => (
+            <Link href={`/film/${m.id}?contentType=movie`}>
               <div className="flex justify-center items-center mx-2">
                 <button
-                  key={movie.id}
                   className="hover:scale-105 transition-[.3s]"
                 >
                   <Image
-                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    src={`https://image.tmdb.org/t/p/w500${m.poster_path}`}
                     className="my-4 rounded-lg w-[150px] h-auto md:w-[180px]"
-                    alt={movie.title}
+                    alt={m.title || m.name}
                     width={350}
                     height={150}
                   />
-                  <p>{movie.title}</p>
+                  <p>{m.title || m.name}</p>
                 </button>
               </div>
             </Link>

@@ -5,14 +5,15 @@ import { useEffect, useState } from "react";
 import Slider from "react-slick";
 
 export default function AnimationMovieList() {
-    const [anime, setAnime] = useState([]);
-    const key = process.env.NEXT_PUBLIC_API_KEY;
+  const [anime, setAnime] = useState([]);
+  useEffect(() => {
     const animeMovie = async () => {
-      const res = await fetch("/api/movies/animation");
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/movie/animation`);
       const movies = await res.json();
-      setAnime(movies.results);
-  };
-  useEffect(() => {animeMovie()}, []);
+      setAnime(movies);
+    };
+    animeMovie()
+  }, []);  
   const settings = {
     infinite: true,
     speed: 1000,

@@ -16,7 +16,7 @@ export default function TVList() {
       setError("Failed to fetch data");
     } else {
       const data = await res.json();
-      setTvList(data.results);
+      setTvList(data);
       setLoading(false);
     }
   };
@@ -71,20 +71,19 @@ export default function TVList() {
       <div className="w-[90vw] m-auto md:w-[95vw]">
         <Slider {...settings}>
           {tvList.map((tv, index) => (
-            <Link href={`/film/${tv.id}?contentType=${tv.media_type}`} key={index}>
+            <Link href={`/film/${tv.id}?contentType=${tv.media_type}`}>
               <div className="flex justify-center items-center mx-2">
                 <button
-                  key={tv.id}
                   className="hover:scale-105 transition-[.3s]"
                 >
                   <Image
-                    src={`https://image.tmdb.org/t/p/w500${tv.poster_path}`}
+                    src={`https://image.tmdb.org/t/p/w500/${tv.poster_path}`}
                     className="my-4 rounded-lg w-[150px] h-auto md:w-[180px]"
-                    alt={tv.name}
+                    alt={tv.title || tv.name}
                     width={350}
                     height={150}
                   />
-                  <p>{tv.name}</p>
+                  <p>{tv.title || tv.name}</p>
                 </button>
               </div>
             </Link>
