@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 import TrendingMovieSlider from '@/components/TrendingMovieSlider';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -10,14 +10,16 @@ import TVList from '@/components/TVList';
 import AnimeList from '@/components/AnimeList';
 
 export default function Page() {
-  const [movies, setMovie] = useState([]);
-  const key = process.env.NEXT_PUBLIC_API_KEY;
-  const getAllMovies = async () => {
-    const res = await fetch("/api/movies/discover");
-    const movies = await res.json();
-    setMovie(movies.results);
+  const [movies, setMovies] = useState([]);
+  const getMovies = async () => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/movie/discover`, {
+      cache: 'no-store',
+    });
+    const data = await res.json();
+    setMovies(data)
   };
-  useEffect(() => {getAllMovies();}, []);
+
+  useEffect(() => {getMovies()}, []);
   return (
     <div>
       <>

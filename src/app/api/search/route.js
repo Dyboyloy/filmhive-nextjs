@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function GET(request) {
     const { searchParams } = new URL(request.url);
-    const key = process.env.NEXT_PUBLIC_API_KEY;
+    const key = process.env.API_KEY;
     const searchKeyword = searchParams.get('query');
     const searchMovieAPI = `https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${searchKeyword}`;
     const searchTvAPI = `https://api.themoviedb.org/3/search/tv?api_key=${key}&query=${searchKeyword}`;
