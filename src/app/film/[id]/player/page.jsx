@@ -10,8 +10,7 @@ export default function MoviePlayer({ params, searchParams }) {
   const [selectedSeason, setSelectedSeason] = React.useState(1);
   const [selectedEpisode, setSelectedEpisode] = React.useState(1);
   const servers = [
-    { id: 0, name: "VidSrc", baseUrl: process.env.NEXT_PUBLIC_ANIME_STREAMING_API },
-    { id:1, name: "Embed.pro", baseUrl: process.env.NEXT_PUBLIC_STREAMING_API },
+    { id: 0, name: "VidSrc", baseUrl: process.env.NEXT_PUBLIC_STREAMING_API },
   ];
   const [selectedServer, setSelectedServer] = React.useState(servers[0]);
 
